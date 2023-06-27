@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Площадь треугольника</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Площадь треугольника</h1>
+    <form>
+        <label for="side1">Сторона 1:</label>
+        <input type="number" id="side1" required><br>
+        <label for="side2">Сторона 2:</label>
+        <input type="number" id="side2" required><br>
+        <label for="side3">Сторона 3:</label>
+        <input type="number" id="side3" required><br>
+        <input type="button" value="Рассчитать" onclick="calculateArea()">
+    </form>
+    <div id="result"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+
+	
+function calculateArea() {
+    var side1 = parseFloat(document.getElementById('side1').value);
+    var side2 = parseFloat(document.getElementById('side2').value);
+    var side3 = parseFloat(document.getElementById('side3').value);
+    if (isValidTriangle(side1, side2, side3)) {
+        var s = (side1 + side2 + side3) / 2;
+        var area = Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+        document.getElementById('result').innerHTML = "Площадь треугольника: " + area.toFixed(2);
+    } else {
+        document.getElementById('result').innerHTML = "Невозможно построить треугольник с заданными сторонами.";
+    }
+}
+function isValidTriangle(side1, side2, side3) {
+    return side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1;
+}
+</script>
